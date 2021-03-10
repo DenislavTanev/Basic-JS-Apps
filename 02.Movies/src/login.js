@@ -23,6 +23,10 @@ async function onSubmit(event) {
         [...document.querySelectorAll('nav .guest')].forEach(l => l.style.display = 'none');
 
         showHome();
+    } else {
+        const error = await response.json();
+        alert(error.message);
+        event.target.reset();
     }
 }
 
