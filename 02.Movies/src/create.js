@@ -23,8 +23,8 @@ async function onSubmit(event) {
     });
 
     if (response.ok) {
-        const movie = await response.json();
-        showDetails(movie._id);
+        const data = await response.json();
+        showDetails(data._id);
     } else {
         const error = await response.json();
         alert(error.message);
@@ -45,4 +45,9 @@ export function setupCreate(mainTarget, sectionTarget) {
 export async function showCreate() {
     main.innerHTML = '';
     main.appendChild(section);
+
+    const form = section.querySelector('form');
+    form.querySelector('[name="title"]').value = '';
+    form.querySelector('[name="description"]').value = '';
+    form.querySelector('[name="imageUrl"]').value = '';
 }
