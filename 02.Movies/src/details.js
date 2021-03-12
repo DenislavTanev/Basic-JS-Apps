@@ -55,7 +55,8 @@ function createMovieCard(movie, likes, ownLike) {
             controls.appendChild(e('a', { className: 'btn btn-danger', href: '#', onClick: (e) => onDelete(e, movie._id) }, 'Delete'));
             controls.appendChild(e('a', { className: 'btn btn-warning', href: '#', onClick: () => showEdit(movie._id) }, 'Edit'));
         } else if (ownLike.length == 0) {
-            controls.appendChild(e('a', { className: 'btn btn-primary', href: '#', onClick: likeMovie }, 'Like'));
+            controls.appendChild(e('a', { className: 'btn btn-primary like', href: '#', onClick: likeMovie }, 'Like'));
+            //controls.appendChild(e('a', { className: 'btn btn-primary dislike', href: '#', onClick: dislikeMovie }, 'Dislike'));
         }
     }
     const likesSpan = e('span', { className: 'enrolled-span' }, likes + ' like' + (likes == 1 ? '' : 's'));
@@ -81,11 +82,25 @@ function createMovieCard(movie, likes, ownLike) {
             body: JSON.stringify({ movieId: movie._id })
         });
         if (response.ok) {
-            event.target.remove();
+            event.target.style.display = 'none';
+            //controls.querySelector('.dislike').style.display = 'block';
             likes++;
             likesSpan.textContent = likes + ' like' + (likes == 1 ? '' : 's');
         };
     };
+
+    // async function dislikeMovie(event) {
+    //     const response = await fetch('http://localhost:3030/data/likes/' + movie_id, {
+    //         method: 'delete',
+    //         headers: { 'X-Authorization': sessionStorage.getItem('authToken') },
+    //     });
+    //     if (response.ok) {
+    //         event.target.style.display = 'none';
+    //         controls.querySelector('.like').style.display = 'block';
+    //         likes--;
+    //         likesSpan.textContent = likes + ' like' + (likes == 1 ? '' : 's');
+    //     };
+    // }
 };
 
 let main;
