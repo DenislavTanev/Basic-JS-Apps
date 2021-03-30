@@ -1,11 +1,11 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
 import { getMemes } from '../api/data.js';
 
-const allMemesTemplate = (data, noMemes) => html`
+const allMemesTemplate = (data) => html`
 <section id="meme-feed">
     <h1>All Memes</h1>
     <div id="memes">
-        ${noMemes ? html`<p class="no-memes">No memes in database.</p>` : data.map(itemTemplate)}
+        ${data.length == 0 ? html`<p class="no-memes">No memes in database.</p>` : data.map(itemTemplate)}
     </div>
 </section>`;
 
@@ -24,11 +24,6 @@ const itemTemplate = (item) => html`
 
 export async function allMemesPage(ctx) {
     const data = await getMemes();
-    const noMemes = true;
-
-    if(data.length > 0){
-        noMemes = false;
-    }
     
-    ctx.render(allMemesTemplate(data, noMemes));
+    ctx.render(allMemesTemplate(data));
 }
