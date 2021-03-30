@@ -14,5 +14,10 @@ const welcomeTemplate = () => html`
 </section>`;
 
 export async function welcomePage(ctx) {
+
+    const token = sessionStorage.getItem('authToken');
+    if(token != null){
+        return ctx.page.redirect('/allMemes');
+    }
     ctx.render(welcomeTemplate());
 };

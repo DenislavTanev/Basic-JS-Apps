@@ -40,8 +40,9 @@ function renderMiddleware(ctx, next) {
 }
 
 function setUserNav() {
-    const userId = sessionStorage.getItem('userId');
-    if(userId != null) {
+    const email = sessionStorage.getItem('email');
+    if(email != null) {
+        document.querySelector('div.profile > span').textContent = `Welcome, ${email}`;
         document.querySelector('.user').style.display = 'inline-block';
         document.querySelector('.guest').style.display = 'none';
     } else {
