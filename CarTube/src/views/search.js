@@ -7,7 +7,7 @@ const searchTemplate = (onClick) => html`
     <h1>Filter by year</h1>
 
     <div class="container">
-        <input type="text" name="search" placeholder="Enter desired production year">
+        <input id="search-input" type="text" name="search" placeholder="Enter desired production year">
         <button class="button-list" @click="${onClick}">Search</button>
     </div>
 
@@ -18,7 +18,7 @@ const resultTemplate = (onClick, cars) => html`
     <h1>Filter by year</h1>
 
     <div class="container">
-        <input type="text" name="search" placeholder="Enter desired production year">
+        <input id="search-input" type="text" name="search" placeholder="Enter desired production year">
         <button class="button-list" @click="${onClick}">Search</button>
     </div>
 
@@ -34,7 +34,7 @@ export async function searchPage(ctx) {
     async function onClick(event) {
         event.preventDefault();
 
-        const yearToSearch = searchSection.querySelector('input').value;
+        const yearToSearch = document.querySelector('input').value;
 
         const cars = await getCarByYear(yearToSearch);
         ctx.render(resultTemplate(onClick, cars));

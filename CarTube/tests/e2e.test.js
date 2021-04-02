@@ -4,7 +4,7 @@ const { expect } = require('chai');
 
 const host = 'http://localhost:3000'; // Application host (NOT service host - that can be anything)
 const interval = 300;
-const DEBUG = true;
+const DEBUG = false;
 const slowMo = 500;
 
 const mockData = require('./mock-data.json');
@@ -501,7 +501,7 @@ describe('E2E tests', function () {
         });
     });
 
-    describe.only('Search Page [ 5 Points ]', async () => {
+    describe('Search Page [ 5 Points ]', async () => {
 
         it('show no matches [ 2.5 Points ]', async () => {
             await handle(endpoints.search('2010'), { get: [] });
