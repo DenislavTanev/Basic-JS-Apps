@@ -6,7 +6,7 @@ import { logout } from './api/data.js';
 import { homePage } from './views/home.js';
 import { catalogPage } from './views/catalog.js';
 
-import {  } from './views/.js';//profile page if required
+import {  } from './views/.js';//profile page 
 
 import { editPage } from './views/edit.js';
 import { createPage } from './views/create.js';
